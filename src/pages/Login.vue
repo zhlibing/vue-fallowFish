@@ -36,7 +36,7 @@
   import {mapGetters} from 'vuex';
   import {doLogin, ERR_OK} from '../api/data'
   import axios from 'axios'
-
+  import Qs from 'qs'
   export default {
     data() {
       return {
@@ -80,45 +80,19 @@
         } else if (this.password.length <= 9) {
           this.$toast('密码不能低于9位哦！')
         } else {
-          let params = {};
-          params.username = this.username;
-          params.password = this.password;
-          // doLogin(params).then((res) => {
-          //   if(res.result === ERR_OK_LOCAL) {
-          //     this.username=res.nickname;
-          //     window.localStorage.setItem('username',this.username)
-          //     window.localStorage.setItem('password',this.password)
-          //     this.$store.dispatch('hasLogin')
-          //     let obj = {}
-          //     obj.avatar = this.url
-          //     obj.username = this.username
-          //     obj.password = this.password
-          //     this.$store.dispatch('setUsername', this.username)
-          //     this.$store.dispatch('setUserinfo', obj)
-          //     this.$toast({
-          //       message: '登录成功',
-          //       duration: 500
-          //     })
-          //   }
-          // })
-          axios({
-            url: '/BBLServer/login.do',
-            method: 'POST',
-            dataType: 'JSONP',//重点在这里，加上这个属性就可以跨域请求了
-            headers: {
-              Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
-              Accept: 'application/json'
-            },
-            params: {
-              username: this.username,
-              password: this.password
-            }
-          }).then(res => {
+          const params = {
+            'username' : this.username,
+            'password' : this.password
+          };
+          var params1 = new URLSearchParams()
+          params1.append('username', this.username)
+          params1.append('password', this.password)
+          doLogin(Qs.stringify(params),params1).then((res) => {
             console.log(res, 'res')
-            if (res.status === ERR_OK) {
-              this.username = res.data.nickname;
-              window.localStorage.setItem('username', this.username)
-              window.localStorage.setItem('password', this.password)
+            if(res.status === ERR_OK) {
+              this.username=res.data.nickname;
+              window.localStorage.setItem('username',this.username)
+              window.localStorage.setItem('password',this.password)
               this.$store.dispatch('hasLogin')
               let obj = {}
               obj.avatar = this.url
@@ -131,9 +105,40 @@
                 duration: 500
               })
             }
-          }).catch(res1 => {
-            console.log(res1, 'res1')
           })
+          // axios({
+          //   url: '/BBLServer/login.do',
+          //   method: 'POST',
+          //   dataType: 'JSONP',//重点在这里，加上这个属性就可以跨域请求了
+          //   headers: {
+          //     Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+          //     Accept: 'application/json'
+          //   },
+          //   params: {
+          //     username: this.username,
+          //     password: this.password
+          //   }
+          // }).then(res => {
+          //   console.log(res, 'res')
+          //   if (res.status === ERR_OK) {
+          //     this.username = res.data.nickname;
+          //     window.localStorage.setItem('username', this.username)
+          //     window.localStorage.setItem('password', this.password)
+          //     this.$store.dispatch('hasLogin')
+          //     let obj = {}
+          //     obj.avatar = this.url
+          //     obj.username = this.username
+          //     obj.password = this.password
+          //     this.$store.dispatch('setUsername', this.username)
+          //     this.$store.dispatch('setUserinfo', obj)
+          //     this.$toast({
+          //       message: '登录成功',
+          //       duration: 500
+          //     })
+          //   }
+          // }).catch(res1 => {
+          //   console.log(res1, 'res1')
+          // })
           setTimeout(() => {
             this.$router.push({
               path: '/'
