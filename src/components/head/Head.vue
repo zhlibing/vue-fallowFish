@@ -41,23 +41,23 @@ export default {
       box-sizing border-box
       display flex
       align-items center
-      img 
+      img
         width 0.6rem
         height 0.6rem
-      input 
+      input
         display none
     .search
       flex 1
       display flex
       align-items center
       background-color #fff
-      border-radius .11rem
-      input 
+      border-radius .5rem
+      input
         background url('../../assets/images/search.png') no-repeat .26rem 50%
         background-size .6rem .6rem
         border-radius .11rem
         padding-left 1rem
-        outline none 
+        outline none
         height 1rem
         border none
     .category
@@ -67,7 +67,7 @@ export default {
       margin-right 0.3rem
       display flex
       align-items center
-      img 
+      img
         width 0.6rem
         height 0.6rem
 </style>
