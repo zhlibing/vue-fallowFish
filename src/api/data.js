@@ -1,6 +1,8 @@
 import axios from 'axios'
 export const HOST = 'https://www.easy-mock.com/mock/5b596a1c2d340a0cf1673504/fallowfish'
 
+export const HOST_LOCAL = 'http://127.0.0.1:8080/BBLServer/'
+
 export const ERR_OK = 200;
 
 export function getSearchresult() {
@@ -65,4 +67,13 @@ export function getChina() {
 export function getLists() {
   const url = HOST + '/lists'
   return axios.get(url)
+}
+
+export function doLogin({ commit, state }, params) {
+  const url = HOST_LOCAL + 'login.do'
+  return axios({
+    url: url,
+    type: 'POST',
+    dataType: 'JSONP'//重点在这里，加上这个属性就可以跨域请求了
+  })
 }

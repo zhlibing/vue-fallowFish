@@ -10,9 +10,10 @@
       <div class="avatar" @click="addPic">
         <img :src="url" alt="">
         <span class="upavatar">上传帅照</span>
-        <input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput" ref="file">
+        <input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput"
+               ref="file">
       </div>
-      
+
       <form action="#" class="form">
         <div class="inputbox border-1px">
           <label for="name" class="label">账户</label>
@@ -31,81 +32,125 @@
 </template>
 
 <script>
-import lrz from 'lrz'
-import { mapGetters } from 'vuex';
-export default {
-  data() {
-    return {
-      url: '../../../static/avatar.jpg',
-      username: '',
-      password: ''
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'login'
-    ])
-  },
-  methods: {
-    goBack() {
-      this.$router.back(-1)
-    },
-    addPic() {
-      this.$refs.file.click()
-    },
-    fileInput(e) {
-      let files = e.target.files
-      console.log(files)
-      if(!files.length) return
-      this.createImage(files, e)
-    },
-    createImage(files, e) {
-      lrz(files[0], { width: 480 }).then(rst=> {
-        this.url = rst.base64
-      }).catch(err=> {
-        console.log(err)
-      }).always(()=> {
-        e.tartget.value = null
-      })
-    },
-    gologin() {
-      if(this.username == '') {
-        this.$toast('请输入用户名')
-      }else if(this.password == '') {
-        this.$toast('请输入密码')
-      }else if(this.password.length<=9) {
-        this.$toast('密码不能低于9位哦！')
-      }else {
-        window.localStorage.setItem('username',this.username)
-        window.localStorage.setItem('password',this.password)
-        this.$store.dispatch('hasLogin')
-        let obj = {}
-        obj.avatar = this.url
-        obj.username = this.username
-        obj.password = this.password
-        this.$store.dispatch('setUsername', this.username)
-        this.$store.dispatch('setUserinfo', obj)
-        this.$toast({
-          message: '登录成功',
-          duration: 500
-        })
-        setTimeout(()=> {
-          this.$router.push({
-            path: '/'
-          })
-        },600)
-        this.$store.dispatch('setCurIndex', 0)
-      }
-    }
+  import lrz from 'lrz'
+  import {mapGetters} from 'vuex';
+  import {doLogin, ERR_OK} from '../api/data'
+  import axios from 'axios'
 
+  export default {
+    data() {
+      return {
+        url: '../../../static/avatar.jpg',
+        username: '',
+        password: ''
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'login'
+      ])
+    },
+    methods: {
+      goBack() {
+        this.$router.back(-1)
+      },
+      addPic() {
+        this.$refs.file.click()
+      },
+      fileInput(e) {
+        let files = e.target.files
+        console.log(files)
+        if (!files.length) return
+        this.createImage(files, e)
+      },
+      createImage(files, e) {
+        lrz(files[0], {width: 480}).then(rst => {
+          this.url = rst.base64
+        }).catch(err => {
+          console.log(err)
+        }).always(() => {
+          e.tartget.value = null
+        })
+      },
+      gologin() {
+        if (this.username == '') {
+          this.$toast('请输入用户名')
+        } else if (this.password == '') {
+          this.$toast('请输入密码')
+        } else if (this.password.length <= 9) {
+          this.$toast('密码不能低于9位哦！')
+        } else {
+          let params = {};
+          params.username = this.username;
+          params.password = this.password;
+          // doLogin(params).then((res) => {
+          //   if(res.result === ERR_OK_LOCAL) {
+          //     this.username=res.nickname;
+          //     window.localStorage.setItem('username',this.username)
+          //     window.localStorage.setItem('password',this.password)
+          //     this.$store.dispatch('hasLogin')
+          //     let obj = {}
+          //     obj.avatar = this.url
+          //     obj.username = this.username
+          //     obj.password = this.password
+          //     this.$store.dispatch('setUsername', this.username)
+          //     this.$store.dispatch('setUserinfo', obj)
+          //     this.$toast({
+          //       message: '登录成功',
+          //       duration: 500
+          //     })
+          //   }
+          // })
+          axios({
+            url: '/BBLServer/login.do',
+            method: 'POST',
+            dataType: 'JSONP',//重点在这里，加上这个属性就可以跨域请求了
+            headers: {
+              Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+              Accept: 'application/json'
+            },
+            params: {
+              username: this.username,
+              password: this.password
+            }
+          }).then(res => {
+            console.log(res, 'res')
+            if (res.status === ERR_OK) {
+              this.username = res.data.nickname;
+              window.localStorage.setItem('username', this.username)
+              window.localStorage.setItem('password', this.password)
+              this.$store.dispatch('hasLogin')
+              let obj = {}
+              obj.avatar = this.url
+              obj.username = this.username
+              obj.password = this.password
+              this.$store.dispatch('setUsername', this.username)
+              this.$store.dispatch('setUserinfo', obj)
+              this.$toast({
+                message: '登录成功',
+                duration: 500
+              })
+            }
+          }).catch(res1 => {
+            console.log(res1, 'res1')
+          })
+          setTimeout(() => {
+            this.$router.push({
+              path: '/'
+            })
+          }, 600)
+          this.$store.dispatch('setCurIndex', 0)
+        }
+      }
+
+    }
   }
-}
 </script>
 
 
 <style lang="stylus" scoped>
-@import '../common/stylus/mixin.styl'
-.container
+  @import '../common/stylus/mixin.styl'
+  .container
     width 10rem
     height 100vh
     background-color #fff
@@ -123,7 +168,7 @@ export default {
         top .4rem
         width 1rem
         height 1rem
-        img 
+        img
           width .8rem
           height .8rem
       .title
@@ -139,7 +184,7 @@ export default {
         align-items center
         justify-content center
         margin 1.4rem 0
-        img 
+        img
           width 2rem
           height 2rem
           border-radius 50%
@@ -170,7 +215,7 @@ export default {
             width 100%
             height 1.3rem
             background-color #ffda44
-            outline none 
+            outline none
             border-radius 8px
             font-size 0.45em
             color #ffffff
@@ -178,6 +223,6 @@ export default {
             align-items center
             justify-content center
             letter-spacing .1rem
-          
-          
+
+
 </style>
