@@ -93,7 +93,7 @@ export default {
   width 10rem
   background-color #f7f7f7
   .head
-    position relative
+    position fixed
     background-color #f3f3f3
     width 100%
     height 1.6rem
@@ -106,7 +106,7 @@ export default {
       top .4rem
       width 1rem
       height 1rem
-      img 
+      img
         width .8rem
         height .8rem
     .title
@@ -123,6 +123,7 @@ export default {
       height 2rem
       display flex
       align-items center
+      margin-top 1.6rem
       .avatarbox
         width 1.6rem
         height 1.6rem
@@ -209,14 +210,14 @@ export default {
       align-items center
       font-size 0.3rem
       font-weight 500
-      img 
+      img
         width 0.8rem
         height 0.8rem
     .givestar
       flex 2
       font-size 0.3rem
       font-weight 500
-      img 
+      img
         width 0.8rem
         height 0.8rem
     .buy
@@ -227,5 +228,5 @@ export default {
       text-align center
       color #ffffff
       font-size 0.4rem
-      
+
 </style>
