@@ -11,7 +11,7 @@
         <img :src="url" alt="">
         <!--<span class="upavatar">上传帅照</span>-->
         <!--<input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput"-->
-               <!--ref="file">-->
+        <!--ref="file">-->
       </div>
 
       <form action="#" class="form">
@@ -37,9 +37,10 @@
 <script>
   import lrz from 'lrz'
   import {mapGetters} from 'vuex';
-  import {doLogin, ERR_OK} from '../api/data'
+  import {doLogin, ERR_OK, PERFIX_IMAGE} from '../api/data'
   import axios from 'axios'
   import Qs from 'qs'
+
   export default {
     data() {
       return {
@@ -80,23 +81,24 @@
           this.$toast('请输入用户名')
         } else if (this.password == '') {
           this.$toast('请输入密码')
-        } else if (this.password.length <= 9) {
-          this.$toast('密码不能低于9位哦！')
+        } else if (this.password.length < 6) {
+          this.$toast('密码不能低于6位哦！')
         } else {
           const params = {
-            'username' : this.username,
-            'password' : this.password
+            'username': this.username,
+            'password': this.password
           };
           var params1 = new URLSearchParams()
           params1.append('username', this.username)
           params1.append('password', this.password)
-          doLogin(Qs.stringify(params),params1).then((res) => {
+          doLogin(Qs.stringify(params), params1).then((res) => {
             console.log(res, 'res')
-            if(res.status === ERR_OK) {
-              if (res.data.result==1){
-                this.username=res.data.username;
-                window.localStorage.setItem('username',this.username)
-                window.localStorage.setItem('password',this.password)
+            if (res.status === ERR_OK) {
+              if (res.data.result == 1) {
+                this.username = res.data.username;
+                this.url = PERFIX_IMAGE + res.data.photo
+                window.localStorage.setItem('username', this.username)
+                window.localStorage.setItem('password', this.password)
                 this.$store.dispatch('hasLogin')
                 let obj = {}
                 obj.avatar = this.url
@@ -114,13 +116,13 @@
                   })
                 }, 600)
                 this.$store.dispatch('setCurIndex', 0)
-              }else {
+              } else {
                 this.$toast({
                   message: '登录失败',
                   duration: 500
                 })
               }
-            }else {
+            } else {
               this.$toast({
                 message: '网络错误',
                 duration: 500
@@ -162,7 +164,7 @@
           // })
         }
       },
-      goregist(){
+      goregist() {
         this.$router.push({
           path: '/Regist'
         })
