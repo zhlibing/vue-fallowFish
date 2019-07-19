@@ -18,7 +18,8 @@
         </div>
         <div class="inputbox border-1px">
           <label for="passwordConfirm" class="label">确认密码</label>
-          <input type="password" id="passwordConfirm" placeholder="请再次输入密码" name="passwordConfirm" v-model="passwordConfirm">
+          <input type="password" id="passwordConfirm" placeholder="请再次输入密码" name="passwordConfirm"
+                 v-model="passwordConfirm">
         </div>
         <div class="button">
           <div class="regist" @click="goregist">注册</div>
@@ -32,6 +33,7 @@
   import {mapGetters} from 'vuex';
   import {doRegist, ERR_OK} from '../api/data'
   import Qs from 'qs'
+
   export default {
     data() {
       return {
@@ -55,27 +57,27 @@
           this.$toast('请输入用户名')
         } else if (this.password == '') {
           this.$toast('请输入密码')
-        } else if (this.password.length <= 9) {
-          this.$toast('密码不能低于9位哦！')
+        } else if (this.password.length < 6) {
+          this.$toast('密码不能低于6位哦！')
         } else if (this.password != this.passwordConfirm) {
           this.$toast('两次输入密码不同哦！')
         } else {
           const params = {
-            'username' : this.username,
-            'password' : this.password,
-            'year' : '20',
-            'sex' : '女',
-            'imie' : 'testtest',
-            'cversion' : '1.0test',
-            'fromtype' : '0',
-            'channel' : 'test22',
-            'appid' : 'test33'
+            'username': this.username,
+            'password': this.password,
+            'year': '20',
+            'sex': '女',
+            'imie': 'testtest',
+            'cversion': '1.0test',
+            'fromtype': '0',
+            'channel': 'test22',
+            'appid': 'test33'
           };
           doRegist(Qs.stringify(params)).then((res) => {
             console.log(res, 'res')
-            if(res.status === ERR_OK) {
+            if (res.status === ERR_OK) {
               this.$router.push({
-                path:'/Login'
+                path: '/Login'
               })
               this.$toast({
                 message: '注册成功',
