@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul>
-      <li class="list" v-for="(list,index) in news" :key="index"  @click="details(index)">
+      <li class="list" v-for="(list,index) in news" :key="index" @click="details(index)">
         <div class="header">
           <img :src="list.avatar" alt="">
           <div class="info">
@@ -12,8 +12,26 @@
             <span>{{list.price}}</span>
           </div>
         </div>
-        <div class="imgbox">
-          <img :src="list.img" alt="">
+        <div class="imgbox"
+             v-show="list.img.length>0">
+          <img alt=""
+               v-if="list.img.length== 1"
+               :src="list.img[0]"
+               :class="{releaseimg:false}"/>
+          <img alt=""
+               v-else-if="list.img.length>= 2&&Math.round(list.img.length%2)==0"
+               v-for="(value,imgIndex) in list.img"
+               :key="imgIndex"
+               :src="value"
+               :class="{releaseimgtwo:true}"/>
+          <img alt=""
+               v-else-if="list.img.length>= 2&&Math.round(list.img.length%2)!=0"
+               v-for="(value,imgIndex) in list.img"
+               :key="imgIndex"
+               :src="value"
+               :class="{releaseimg:true}"/>
+          <!--:class="{releaseimg : list.img.length >= 2 ? true : false}"/>-->
+          <!--if(list.img.length>= 2&&Math.round(list.img.length%2)==0){-->
         </div>
         <div class="detail border-1px">
           <p class="desc">{{list.desc}}</p>
@@ -48,57 +66,56 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    
+
   </div>
 </template>
 
 <script>
-import Swiper from 'swiper'
-import 'swiper/dist/css/swiper.min.css'
-export default {
-  data() {
-    return {
-      
-    }
-  },
-  props: {
-    news: {
-      type: Array
+  import Swiper from 'swiper'
+  import 'swiper/dist/css/swiper.min.css'
+
+  export default {
+    data() {
+      return {}
     },
-    recoms: {
-      type: Array
-    }
-  },
-  created() {
-    this.$nextTick(()=>{
-      let swiperBottom = this.$refs.swiperBottom;
-      let mySwiper = new Swiper(swiperBottom,{
-        autoplay: 2000,
-        loop: true,
-        observer:true,
-        observeParents:true,
-        pagination: {
-          el: '.swiper-pagination'
-        }
+    props: {
+      news: {
+        type: Array
+      },
+      recoms: {
+        type: Array
+      }
+    },
+    created() {
+      this.$nextTick(() => {
+        let swiperBottom = this.$refs.swiperBottom;
+        let mySwiper = new Swiper(swiperBottom, {
+          autoplay: 2000,
+          loop: true,
+          observer: true,
+          observeParents: true,
+          pagination: {
+            el: '.swiper-pagination'
+          }
+        })
       })
-    })
-    
-  },
-  methods: {
-    details(index) {
-      let news = this.news[index]
-      this.$store.dispatch('setNews', news)
-      this.$router.push({
-        path: '/details'
-      })
-      
+
+    },
+    methods: {
+      details(index) {
+        let news = this.news[index]
+        this.$store.dispatch('setNews', news)
+        this.$router.push({
+          path: '/details'
+        })
+
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-@import '../../common/stylus/mixin.styl'
+  @import '../../common/stylus/mixin.styl'
   .container
     padding 0.2rem
     .list
@@ -109,7 +126,7 @@ export default {
       .header
         height 1.02rem
         display flex
-        img 
+        img
           height 1rem
           width 1rem
           border-radius 50%
@@ -139,9 +156,23 @@ export default {
           margin-right 0.3rem
       .imgbox
         margin-top 0.1rem
-        img 
-          width 6rem
-          height 6rem
+        img {
+          width: 65%;
+          float: left;
+          height: auto;
+        }
+        .releaseimg {
+          width: 30%;
+          margin-right: 0.1066666667rem;
+          margin-bottom: 0.1066666667rem;
+          height: auto;
+        }
+        .releaseimgtwo {
+          width: 47%;
+          margin-right: 0.1066666667rem;
+          margin-bottom: 0.1066666667rem;
+          height: auto;
+        }
       .detail
         margin-top 0.2rem
         font-size 0.4rem
@@ -161,9 +192,9 @@ export default {
           color #888888
     .swiper
       width 10rem
-      margin 0 auto 
+      margin 0 auto
       .item
-        height auto 
+        height auto
         padding 0.4rem 1rem
         font-weight 700
         box-sizing border-box
@@ -193,7 +224,7 @@ export default {
           justify-content space-between
           padding-bottom 0.4rem
           border-1px(#ddd)
-          img 
+          img
             width 1.6rem
             height 1.6rem
         .addr
@@ -205,8 +236,6 @@ export default {
           background-position 0 100%
           background-size 14px 14px
           font-size 0.4rem
-
-
 
 
 </style>

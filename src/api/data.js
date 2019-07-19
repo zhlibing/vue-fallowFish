@@ -146,3 +146,53 @@ export function doUpload(params, file) {
   };
   return axios.post(url, formdata, config)
 }
+
+export const news = [{
+  "id": "0",
+  "avatar": "./static/1.png",
+  "name": "天涯海角",
+  "time": "12分钟前来过",
+  "price": "￥125.10",
+  "img": ["./static/01.png"],
+  "desc": "小番茄定制2017新款显瘦竖条纹半生裙高腰纽扣开叉雪纺中长款半裙",
+  "add": "来自郑州",
+  "kind": "鱼塘|网红衣服鱼塘",
+  "star": "点赞",
+  "num": "15",
+  "freight": "0"
+}, {
+  "id": "1",
+  "avatar": "./static/1.png",
+  "name": "天涯海角",
+  "time": "12分钟前来过",
+  "price": "￥125.10",
+  "img": ["./static/01.png", "./static/01.png"],
+  "desc": "小番茄定制2017新款显瘦竖条纹半生裙高腰纽扣开叉雪纺中长款半裙",
+  "add": "来自郑州",
+  "kind": "鱼塘|网红衣服鱼塘",
+  "star": "点赞",
+  "num": "15",
+  "freight": "0"
+}, {
+  "id": "2",
+  "avatar": "./static/2.png",
+  "name": "糖果xt90",
+  "time": "1小时前来过",
+  "price": "￥80",
+  "img": ["./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png"],
+  "desc": "买一送一：欧洲力淑女包，感兴趣的给我留言哟",
+  "add": "来自北京",
+  "kind": "鱼塘|给闲置的衣服寻找有缘",
+  "freight": "10"
+}, {
+  "id": "3",
+  "avatar": "./static/2.png",
+  "name": "糖果xt90",
+  "time": "1小时前来过",
+  "price": "￥80",
+  "img": ["./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png", "./static/02.png"],
+  "desc": "买一送一：欧洲力淑女包，感兴趣的给我留言哟",
+  "add": "来自北京",
+  "kind": "鱼塘|给闲置的衣服寻找有缘",
+  "freight": "10"
+}]

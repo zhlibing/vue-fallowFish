@@ -9,7 +9,7 @@
       <SmallBanner :smBanner="smBanner"></SmallBanner>
       <IndexNav :news="news" :nears="nears" :recoms="recoms"></IndexNav>
       <NavButtom></NavButtom>
-      
+
     </div>
 </template>
 
@@ -22,6 +22,7 @@ import SmallBanner from '@/components/smallbanner/SmallBanner'
 import IndexNav from '@/components/indexnav/IndexNav'
 import IndexBanner from '@/components/indexbanner/IndexBanner'
 import Head from '@/components/head/Head'
+import {news} from '../api/data'
 export default {
   name: 'App',
   components: {
@@ -61,7 +62,7 @@ export default {
     }),
     getIndexNav().then(res=> {
       if(res.status === ERR_OK) {
-        this.news = res.data.news
+        this.news = news
         this.nears = res.data.nears
         this.recoms = res.data.recoms
       }
