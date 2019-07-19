@@ -18,6 +18,7 @@ import Message from '@/pages/Message'
 import My from '@/pages/My'
 import Sell from '@/pages/Sell'
 import Login from '@/pages/Login'
+import Regist from '@/pages/Regist'
 
 Vue.use(Router)
 
@@ -63,6 +64,10 @@ export default new Router({
       component: Login
     },
     {
+      path: '/regist',
+      component: Regist
+    },
+    {
       path: '/details',
       component: Details
     },
@@ -101,6 +106,6 @@ export default new Router({
         }
       ]
     }
-    
+
   ]
 })

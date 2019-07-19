@@ -26,6 +26,9 @@
         <div class="button">
           <div class="login" @click="gologin">登录</div>
         </div>
+        <div class="button2">
+          <div class="regist" @click="goregist">注册</div>
+        </div>
       </form>
     </div>
   </div>
@@ -90,20 +93,22 @@
           doLogin(Qs.stringify(params),params1).then((res) => {
             console.log(res, 'res')
             if(res.status === ERR_OK) {
-              this.username=res.data.nickname;
-              window.localStorage.setItem('username',this.username)
-              window.localStorage.setItem('password',this.password)
-              this.$store.dispatch('hasLogin')
-              let obj = {}
-              obj.avatar = this.url
-              obj.username = this.username
-              obj.password = this.password
-              this.$store.dispatch('setUsername', this.username)
-              this.$store.dispatch('setUserinfo', obj)
-              this.$toast({
-                message: '登录成功',
-                duration: 500
-              })
+              if (res.data.result==1){
+                this.username=res.data.nickname;
+                window.localStorage.setItem('username',this.username)
+                window.localStorage.setItem('password',this.password)
+                this.$store.dispatch('hasLogin')
+                let obj = {}
+                obj.avatar = this.url
+                obj.username = this.username
+                obj.password = this.password
+                this.$store.dispatch('setUsername', this.username)
+                this.$store.dispatch('setUserinfo', obj)
+                this.$toast({
+                  message: '登录成功',
+                  duration: 500
+                })
+              }
             }
           })
           // axios({
@@ -146,8 +151,12 @@
           }, 600)
           this.$store.dispatch('setCurIndex', 0)
         }
+      },
+      goregist(){
+        this.$router.push({
+          path: '/Regist'
+        })
       }
-
     }
   }
 </script>
@@ -228,6 +237,23 @@
             align-items center
             justify-content center
             letter-spacing .1rem
-
+        .button2
+          width 10rem
+          padding 0.25rem .25rem
+          box-sizing border-box
+          .regist
+            width 30%
+            height 1.0rem
+            /*border-color  #f88*/
+            /*border solid*/
+            /*border-radius 8px*/
+            /*border-width 0.02rem*/
+            font-size 0.45em
+            color #000
+            display flex
+            align-items center
+            justify-content center
+            letter-spacing .1rem
+            float right
 
 </style>

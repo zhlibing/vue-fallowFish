@@ -81,3 +81,12 @@ export function doLogin(params,params1) {
       dataType: 'JSONP',//重点在这里，加上这个属性就可以跨域请求了
   }})
 }
+
+export function doRegist(params) {
+  const url = HOST_LOCAL + 'regsiter.do'
+  return axios.post(url, params,{ headers:{
+      Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+      Accept: 'application/json',
+      dataType: 'JSONP',
+    }})
+}
