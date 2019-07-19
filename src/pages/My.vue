@@ -7,8 +7,10 @@
             <div class="name">{{username}}</div>
             <div class="somedesc">用闲鱼来挣钱~</div>
           </div>
-          <div class="useravatar">
+          <div class="useravatar" @click="addPic">
             <img :src="url" alt="" class="avatar">
+            <input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput"
+                   ref="file">
           </div>
         </div>
         <div class="count">
@@ -72,6 +74,7 @@
 <script>
 import NavButtom from '@/components/navbuttom/NavButtom'
 import { mapGetters } from 'vuex';
+import {doUpload, ERR_OK} from '../api/data'
 export default {
   data() {
     return {
@@ -85,6 +88,25 @@ export default {
     this.url = window.localStorage.getItem('useravatar')
   },
   methods: {
+    addPic() {
+      this.$refs.file.click()
+    },
+    fileInput(e) {
+      let files = e.target.files
+      console.log(files)
+      if (!files.length) return
+      this.createImage(files, e)
+    },
+    createImage(files, e) {
+      lrz(files[0], {width: 480}).then(rst => {
+        this.url = rst.base64
+        this.toUpload(files[0]);
+      }).catch(err => {
+        console.log(err)
+      }).always(() => {
+        e.tartget.value = null
+      })
+    },
     tologin() {
       this.$router.push({
         path: '/login'
@@ -114,6 +136,21 @@ export default {
           path: '/order'
         })
       }
+    },
+    toUpload(file){
+      console.log(file)
+      const params = {
+        'name' : 'testupload001.png'
+      };
+      doUpload(params,file).then((res) => {
+        console.log(res, 'res')
+        if(res.status === ERR_OK) {
+          this.$toast({
+            message: '上传成功',
+            duration: 500
+          })
+        }
+      })
     }
   },
   computed: {
@@ -173,7 +210,7 @@ export default {
           display flex
           align-items center
           justify-content center
-          img 
+          img
             width 100%
             height 100%
             border-radius 50%
@@ -215,8 +252,8 @@ export default {
           font-size 0.3rem
           font-weight 400
       .on
-        border none 
-        outline none 
+        border none
+        outline none
         width 2.3rem
         height 0.93rem
         box-sizing border-box
@@ -238,7 +275,7 @@ export default {
       width 2.5rem
       height 1.2rem
       background-color #ffda44
-      outline none 
+      outline none
       border none
     .animate
       position absolute
@@ -251,7 +288,7 @@ export default {
   .list
     margin-top 0.3rem
     width 100%
-    height auto 
+    height auto
     background-color #fff
     font-size 0.4rem
     font-weight 400
@@ -294,10 +331,10 @@ export default {
       display block
       width 95%
       font-size 0.4rem
-      margin 0.3rem auto 
+      margin 0.3rem auto
       height 1.3rem
-      outline none 
-      border none 
+      outline none
+      border none
       background-color red
       color #ffffff
 

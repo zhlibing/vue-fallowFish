@@ -3,6 +3,8 @@ export const HOST = 'https://www.easy-mock.com/mock/5b596a1c2d340a0cf1673504/fal
 
 export const HOST_LOCAL = '/BBLServer/'
 
+export const HOST_FILE_LOCAL = '/BBLFiLeServer/'
+
 export const ERR_OK = 200;
 
 export function getSearchresult() {
@@ -89,4 +91,15 @@ export function doRegist(params) {
       Accept: 'application/json',
       dataType: 'JSONP',
     }})
+}
+
+export function doUpload(params,file) {
+  const url = HOST_FILE_LOCAL + 'fileupload.do'
+  var formdata=new FormData();// 创建form对象
+  formdata.append('img',file,params.name);// 通过append向form对象添加数据,可以通过append继续添加数据
+  console.log(params.name,'>>>name')
+  let config = {
+    headers:{'Content-Type':'multipart/form-data'}
+  };
+  return axios.post(url, formdata,config)
 }
