@@ -112,6 +112,18 @@ export function doFindcheckphoto(params) {
   })
 }
 
+export function doFindcomplanitpagelist(params) {
+  const url = HOST_LOCAL + 'findcomplanitpagelist.do'
+  return axios.post(url, params, {
+    headers: {
+      Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+      Accept: 'application/json',
+      dataType: 'JSONP',
+    }
+  })
+}
+
+//上传图片保存路径
 export function doUpheadimage(params) {
   const url = HOST_LOCAL + 'upheadimage.do'
   return axios.post(url, params, {
@@ -123,6 +135,7 @@ export function doUpheadimage(params) {
   })
 }
 
+//上传图片
 export function doUpload(params, file) {
   const url = HOST_FILE_LOCAL + 'fileupload.do'
   var formdata = new FormData();// 创建form对象
