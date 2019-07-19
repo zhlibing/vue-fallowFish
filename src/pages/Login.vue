@@ -108,7 +108,23 @@
                   message: '登录成功',
                   duration: 500
                 })
+                setTimeout(() => {
+                  this.$router.push({
+                    path: '/'
+                  })
+                }, 600)
+                this.$store.dispatch('setCurIndex', 0)
+              }else {
+                this.$toast({
+                  message: '登录失败',
+                  duration: 500
+                })
               }
+            }else {
+              this.$toast({
+                message: '网络错误',
+                duration: 500
+              })
             }
           })
           // axios({
@@ -144,12 +160,6 @@
           // }).catch(res1 => {
           //   console.log(res1, 'res1')
           // })
-          setTimeout(() => {
-            this.$router.push({
-              path: '/'
-            })
-          }, 600)
-          this.$store.dispatch('setCurIndex', 0)
         }
       },
       goregist(){
