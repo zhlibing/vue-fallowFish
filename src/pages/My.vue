@@ -145,10 +145,12 @@ export default {
       doUpload(params,file).then((res) => {
         console.log(res, 'res')
         if(res.status === ERR_OK) {
-          this.$toast({
-            message: '上传成功',
-            duration: 500
-          })
+          if (res.data.result==1) {
+            this.$toast({
+              message: '上传成功',
+              duration: 500
+            })
+          }
         }
       })
     }
