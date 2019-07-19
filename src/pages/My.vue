@@ -75,6 +75,7 @@
 import NavButtom from '@/components/navbuttom/NavButtom'
 import { mapGetters } from 'vuex';
 import {doUpload, ERR_OK} from '../api/data'
+import {format,GetRandomNum} from '../untils/utime'
 export default {
   data() {
     return {
@@ -138,9 +139,11 @@ export default {
       }
     },
     toUpload(file){
-      console.log(file)
+      var myDate = new Date().format("yyyyMMddhhmmss")
+      var upname = this.username+myDate+this.GetRandomNum(100000,999999)+".jpg"
+      console.log(file+'>>>>>'+upname)
       const params = {
-        'name' : 'testupload001.png'
+        'name' : upname
       };
       doUpload(params,file).then((res) => {
         console.log(res, 'res')
@@ -153,6 +156,11 @@ export default {
           }
         }
       })
+    },
+    GetRandomNum(Min, Max) {
+      var Range = Max - Min;
+      var Rand = Math.random();
+      return (Min + Math.round(Rand * Range));
     }
   },
   computed: {

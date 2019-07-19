@@ -94,7 +94,7 @@
             console.log(res, 'res')
             if(res.status === ERR_OK) {
               if (res.data.result==1){
-                this.username=res.data.nickname;
+                this.username=res.data.username;
                 window.localStorage.setItem('username',this.username)
                 window.localStorage.setItem('password',this.password)
                 this.$store.dispatch('hasLogin')
