@@ -75,7 +75,7 @@
 import NavButtom from '@/components/navbuttom/NavButtom'
 import { mapGetters } from 'vuex';
 import {doUpload, ERR_OK} from '../api/data'
-import {format,GetRandomNum} from '../untils/utime'
+import {format} from '../untils/utime'
 export default {
   data() {
     return {
