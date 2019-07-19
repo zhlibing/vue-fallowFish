@@ -96,7 +96,9 @@
             if (res.status === ERR_OK) {
               if (res.data.result == 1) {
                 this.username = res.data.username;
-                this.url = PERFIX_IMAGE + res.data.photo
+                if (res.data.photo != null && res.data.photo.length > 0) {
+                  this.url = PERFIX_IMAGE + res.data.photo
+                }
                 window.localStorage.setItem('username', this.username)
                 window.localStorage.setItem('password', this.password)
                 this.$store.dispatch('hasLogin')
