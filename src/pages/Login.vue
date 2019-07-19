@@ -7,11 +7,11 @@
       <div class="title">账户登录</div>
     </div>
     <div class="loginform">
-      <div class="avatar" @click="addPic">
+      <div class="avatar" @click="">
         <img :src="url" alt="">
-        <span class="upavatar">上传帅照</span>
-        <input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput"
-               ref="file">
+        <!--<span class="upavatar">上传帅照</span>-->
+        <!--<input type="file" hidden accept="image/jpeg,image/jpg,image/png" capture="camera" @change="fileInput"-->
+               <!--ref="file">-->
       </div>
 
       <form action="#" class="form">
