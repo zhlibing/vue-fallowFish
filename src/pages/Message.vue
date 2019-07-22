@@ -12,44 +12,45 @@
         </div>
       </div>
     </div>
-    <div class="wrapper2">
-      <!-- 复杂场景 -->
-      <Scroll
-        v-if="true"
-        ref="scroll"
-        :update-data="[list]"
-        :refresh-data="[]"
-        class="content"
-        @pullingDown="loadRefresh"
-        @pullingUp="loadMore">
-        <ul>
-          <li v-for="(item, index) in list" :key="index">{{ item }}</li>
-        </ul>
-      </Scroll>
-    </div>
+    <load-more
+      class="content"
+      :pageIndex="page"
+      :pageSize="pageSize"
+      :totalCount="totalCount"
+      :openRefresh="true"
+      :loadFinished="loadFinished"
+      @refresh="loadRefresh"
+      @loadmore="loadMore">
+      <ul class="ul">
+        <li class="li" v-for="(item, index) in list" :key="index">{{ item }}</li>
+      </ul>
+    </load-more>
     <NavButtom></NavButtom>
   </div>
 </template>
 
 <script>
   import NavButtom from '@/components/navbuttom/NavButtom'
-  import Scroll from 'vue-slim-better-scroll'
+  import LoadMore from 'vue-loadmore-simple'
   import {timeout} from '../untils/utime'
+  import Vue from 'vue'
 
+  Vue.use(LoadMore)
   export default {
     components: {
       NavButtom,
-      Scroll
     },
     data() {
       return {
         list: [],
+        page: 1,
+        pageSize: 10,
+        totalCount: -1, //默认给-1
+        loadFinished: false
       }
     },
     created() {
       // 不会引起DOM变化的数据在此定义
-      this.page = 1
-      this.pageSize = 10
     },
     mounted() {
       this.loadRefresh()
@@ -64,13 +65,19 @@
         // 初始化数据
         this.list = data
         this.page = 1
+        if (data.length > 0) {
+          this.totalCount = 9999
+        } else {
+          this.totalCount = 0
+        }
+        this.loadFinished = false
       },
       // 加载更多数据
       async loadMore() {
         const page = this.page + 1
         const data = await this._fetchList(page)
         this.list.push(...data)
-        data.length < this.pageSize ? this.$refs.scroll.update(true) : this.page++ // 判断是否已达最后一页?如果已是最后一页，可调用this.$refs.scroll.update(true)关闭上拉
+        data.length < this.pageSize ? this.loadFinished = true : this.page++ // 判断是否已达最后一页
       },
       // 模拟一个异步获取列表操作
       async _fetchList(page = 1, pageSize = this.pageSize) {
@@ -81,7 +88,7 @@
             return Array.from({length: pageSize}, (value, index) => `第${page}页的数据${index}`)
           } else {
             // 模拟已到达最后一页时的数据返回
-            return Array.from({length: pageSize / 2}, (value, index) => `最后一页,第${page}页的数据${index}`)
+            return Array.from({length: pageSize / 2}, (value, index) => `最后一页的数据${index}`)
           }
         } catch (e) {
           return false
@@ -97,6 +104,7 @@
   .container
     width 10rem
     height 100%
+    margin-bottom 2.5rem
     background-color #fff
     .wrapper
       width 100%
@@ -128,28 +136,18 @@
           color #888888
           .time
             margin-left 0.3rem
-    .wrapper2
-      width 100%
-      height 10rem
-      display flex
-      align-items center
-      color #000000
-      .content {
-        flex: 1
-        background-color: #007aff;
-        overflow: hidden;
-        box-sizing: border-box;
-        ul {
-          li {
-            background: #fff;
-            height: 44px;
-            line-height: 44px;
-            text-align: center;
-            color: $baseColor;
-            border-bottom: 1px solid #eee;
-          }
-        }
-      }
+    .content
+      flex 1
+      overflow hidden
+      box-sizing border-box
+      .ul
+        .li
+          background #fff;
+          height 80px;
+          line-height 80px;
+          text-align center;
+          color #d8c
+          border-bottom 1px solid #d8c;
 
 
 </style>
