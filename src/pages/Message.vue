@@ -53,24 +53,12 @@
     created() {
       // 不会引起DOM变化的数据在此定义
     },
-    //在页面离开时记录滚动位置
-    beforeRouteLeave(to, from, next) {
-      next()
-      console.log('beforeRouteLeave', '>>>>message.vue')
-    },
-    //进入该页面时，用之前保存的滚动位置赋值
-    beforeRouteEnter(to, from, next) {
-      next(vm => {
-        document.body.scrollTop = vm.scrollTop
-      })
-      console.log('beforeRouteEnter', '>>>>message.vue')
-    },
     mounted() {
       this.loadRefresh()
       window.addEventListener('scroll', this.handleScroll)
     },
     activated() {
-      if (this.scroll > 0) {
+      if (this.scroll >= 0) {
         window.scrollTo(0, this.scroll);
         this.scroll = 0;
         window.addEventListener('scroll', this.handleScroll);

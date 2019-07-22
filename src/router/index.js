@@ -69,7 +69,10 @@ export default new Router({
     },
     {
       path: '/my',
-      component: My
+      component: My,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/login',

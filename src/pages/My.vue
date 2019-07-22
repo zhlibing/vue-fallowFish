@@ -47,7 +47,7 @@
         <li class="item item2">我卖出的<span class="number" v-if="login">{{sellnum}}</span></li>
         <li class="item item3" @click="buy">我买到的<span class="number" v-if="login">{{buynum}}</span></li>
         <li class="item item4">我赞过的<span class="number" v-if="login">{{likenum}}</span></li>
-        <li class="item item5" @click = "scroll">我的拍卖</li>
+        <li class="item item5">我的拍卖</li>
         <li class="item item6">我的鱼贝<span class="number" v-if="login">{{money}}</span></li>
       </ul>
     </div>
@@ -81,7 +81,8 @@
   export default {
     data() {
       return {
-        url: ''
+        url: '',
+        scroll: 0
       }
     },
     mounted() {
@@ -90,8 +91,26 @@
       this.$store.dispatch('setUsername', username)
       this.url = window.localStorage.getItem('useravatar')
       console.log(this.url, '>>>>>>avatar')
+      window.addEventListener('scroll', this.handleScroll)
+      console.log('mounted', '>>>>MY.vue')
+    },
+    activated() {
+      if (this.scroll >= 0) {
+        window.scrollTo(0, this.scroll);
+        this.scroll = 0;
+        window.addEventListener('scroll', this.handleScroll);
+      }
+      console.log('activated', '>>>>MY.vue')
+    },
+    deactivated() {
+      window.removeEventListener('scroll', this.handleScroll);
+      console.log('deactivated', '>>>>MY.vue')
     },
     methods: {
+      handleScroll() {
+        this.scroll = document.documentElement && document.documentElement.scrollTop
+        console.log(this.scroll)
+      },
       addPic() {
         this.$refs.file.click()
       },
