@@ -21,9 +21,21 @@
       :loadFinished="loadFinished"
       @refresh="loadRefresh"
       @loadmore="loadMore">
-      <ul class="ul">
-        <li class="li" v-for="(item, index) in list" :key="index">{{ item }}</li>
-      </ul>
+      <div class="list border-1px" v-for="(item,index) in list" :key="index">
+        <img :src='url' alt="" class="image">
+        <div class="info">
+          <div class="head">
+            <p class="tit">{{'老汪'}}</p>
+            <span class="level">{{'11级'}}</span>
+          </div>
+          <div class="text">
+            <p class="desc">{{'我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？'}}</p>
+          </div>
+          <div class="hot">
+            <span>人气{{'100人喜欢'}}·发布{{'80篇'}}</span>
+          </div>
+        </div>
+      </div>
     </load-more>
     <NavButtom></NavButtom>
   </div>
@@ -42,6 +54,7 @@
     },
     data() {
       return {
+        url: '../../../static/avatar.jpg',
         list: [],
         page: 1,
         pageSize: 10,
@@ -158,14 +171,47 @@
       flex 1
       overflow hidden
       box-sizing border-box
-      .ul
-        .li
-          background #fff;
-          height 80px;
-          line-height 80px;
-          text-align center;
-          color #d8c
-          border-bottom 1px solid #d8c;
+      margin .333rem .511rem
+      .list
+        box-sizing border-box
+        padding-bottom .3rem
+        padding-top .3rem
+        border-1px(#ccc)
+        display flex
+        .image
+          width 1.6rem
+          height 1.6rem
+          border-radius 50%
+        .info
+          flex 1
+          margin-left 0.3rem
+          .head
+            display flex
+            margin-bottom 0.13rem
+            .tit
+              font-size .4rem
+              font-weight 600
+              flex 1
+            .level
+              font-size 0.3rem
+              width 1.2rem
+              height 0.66rem
+              line-height 0.66rem
+              background: url('../assets/images/标签.png') no-repeat;
+              background-size cover
+              background-position 110% 77%
+              padding-left 0.3rem
+              box-sizing border-box
+              color #fff
+          .text
+            font-size 0.4rem
+            font-weight 450
+            margin-bottom 0.2rem
+            line-height 0.6rem
+          .hot
+            margin-top 0.3rem
+            font-size 0.33rem
+            color #666666
 
 
 </style>

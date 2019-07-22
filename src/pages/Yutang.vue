@@ -260,7 +260,7 @@
       padding-top .4rem
       box-sizing border-box
       padding-bottom .3rem
-      border-1px(#eee)
+      border-1px(#ccc)
       display flex
       .image
         width 1.6rem
@@ -290,7 +290,9 @@
           font-size 0.4rem
           font-weight 450
           margin-bottom 0.2rem
+          line-height 0.6rem
         .hot
+          margin-top 0.3rem
           font-size 0.33rem
           color #666666
     .swiper-container
