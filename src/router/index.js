@@ -19,6 +19,7 @@ import My from '@/pages/My'
 import Sell from '@/pages/Sell'
 import Login from '@/pages/Login'
 import Regist from '@/pages/Regist'
+import Scroll from '@/pages/Scroll'
 
 Vue.use(Router)
 
@@ -90,6 +91,10 @@ export default new Router({
     {
       path: '/order',
       component: Order
+    },
+    {
+      path: '/scroll',
+      component: Scroll
     },
     {
       path: '/sell',

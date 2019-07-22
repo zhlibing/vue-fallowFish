@@ -47,7 +47,7 @@
         <li class="item item2">我卖出的<span class="number" v-if="login">{{sellnum}}</span></li>
         <li class="item item3" @click="buy">我买到的<span class="number" v-if="login">{{buynum}}</span></li>
         <li class="item item4">我赞过的<span class="number" v-if="login">{{likenum}}</span></li>
-        <li class="item item5">我的拍卖</li>
+        <li class="item item5" @click = "scroll">我的拍卖</li>
         <li class="item item6">我的鱼贝<span class="number" v-if="login">{{money}}</span></li>
       </ul>
     </div>
@@ -138,6 +138,15 @@
         } else {
           this.$router.push({
             path: '/order'
+          })
+        }
+      },
+      scroll() {
+        if (!this.isLogin) {
+          this.$toast('请先登录再查看')
+        } else {
+          this.$router.push({
+            path: '/scroll'
           })
         }
       },
