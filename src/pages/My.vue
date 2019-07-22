@@ -160,15 +160,6 @@
           })
         }
       },
-      scroll() {
-        if (!this.isLogin) {
-          this.$toast('请先登录再查看')
-        } else {
-          this.$router.push({
-            path: '/scroll'
-          })
-        }
-      },
       toUpload(file) {
         var myDate = new Date().format("yyyyMMddhhmmss")
         var upname = this.username + myDate + this.GetRandomNum(100000, 999999) + ".jpg"
