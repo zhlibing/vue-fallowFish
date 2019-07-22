@@ -74,8 +74,8 @@
         window.scrollTo(0, this.scroll);
         this.scroll = 0;
         window.addEventListener('scroll', this.handleScroll);
-        console.log('activated', '>>>>message.vue')
       }
+      console.log('activated', '>>>>message.vue')
     },
     deactivated() {
       window.removeEventListener('scroll', this.handleScroll);
