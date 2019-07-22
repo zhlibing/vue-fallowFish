@@ -31,11 +31,17 @@ export default new Router({
       children: [
         {
           path: 'new',
-          component: New
+          component: New,
+          meta: {
+            keepAlive: true
+          }
         },
         {
           path: 'near',
-          component: Near
+          component: Near,
+          meta: {
+            keepAlive: true
+          }
         }
       ]
     },
@@ -49,11 +55,17 @@ export default new Router({
     },
     {
       path: '/yutang',
-      component: Yutang
+      component: Yutang,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/message',
-      component: Message
+      component: Message,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/my',

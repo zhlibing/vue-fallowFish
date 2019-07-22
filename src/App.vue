@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
 <script>
-export default {
-  name: 'App'
-}
+  export default {
+    name: 'App'
+  }
 </script>
 
 <style lang="stylus">
-#app 
-  overflow hidden
+  #app
+    overflow hidden
 </style>
