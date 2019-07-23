@@ -123,6 +123,17 @@ export function doFindcomplanitpagelist(params) {
   })
 }
 
+export function doFindhavealook(params) {
+  const url = HOST_LOCAL + 'findhavealook.do'
+  return axios.post(url, params, {
+    headers: {
+      Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+      Accept: 'application/json',
+      dataType: 'JSONP',
+    }
+  })
+}
+
 //上传图片保存路径
 export function doUpheadimage(params) {
   const url = HOST_LOCAL + 'upheadimage.do'
