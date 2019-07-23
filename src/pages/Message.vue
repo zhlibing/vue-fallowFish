@@ -138,13 +138,15 @@
     margin-bottom 2.5rem
     background-color #fff
     .wrapper
+      position fixed
       width 100%
       height 2.5rem
       display flex
       align-items center
       color #000000
       padding 0 .4rem
-      border-1px(#f7f7f7)
+      z-index 2
+      background-color #fff
       .img
         width 2rem
         height 2rem
@@ -171,7 +173,9 @@
       flex 1
       overflow hidden
       box-sizing border-box
-      margin .333rem .511rem
+      margin 0rem .511rem
+      padding-top 2.5rem
+      z-index 1
       .list
         box-sizing border-box
         padding-bottom .3rem
