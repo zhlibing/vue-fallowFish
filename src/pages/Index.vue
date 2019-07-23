@@ -22,7 +22,8 @@
   import IndexNav from '@/components/indexnav/IndexNav'
   import IndexBanner from '@/components/indexbanner/IndexBanner'
   import Head from '@/components/head/Head'
-  import {news} from '../api/data'
+  import {news, doFindcomplanitpagelist, PERFIX_IMAGE} from '../api/data'
+  import Qs from 'qs'
 
   export default {
     name: 'App',
@@ -64,11 +65,12 @@
         }),
         getIndexNav().then(res => {
           if (res.status === ERR_OK) {
-            this.news = news
+            // this.news = news
             this.nears = res.data.nears
             this.recoms = res.data.recoms
           }
-        })
+        }),
+        this.getdata()
     },
     mounted() {
       window.addEventListener('scroll', this.handleScroll)
@@ -91,6 +93,19 @@
         this.scroll = document.documentElement && document.documentElement.scrollTop
         console.log(this.scroll)
       },
+      getdata() {
+        const params = {
+          'pagenumber': '1',
+        };
+        doFindcomplanitpagelist(Qs.stringify(params)).then((res) => {
+          console.log(res, 'res')
+          if (res.status === ERR_OK) {
+            if (res.data.length > 0) {
+              this.news = res.data
+            }
+          }
+        })
+      }
     }
   }
 </script>

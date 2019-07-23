@@ -3,43 +3,41 @@
     <ul>
       <li class="list" v-for="(list,index) in news" :key="index" @click="details(index)">
         <div class="header">
-          <img :src="list.avatar" alt="">
+          <img :src="PERFIX_IMAGE+list.headimg" alt="">
           <div class="info">
-            <p class="title">{{list.name}}</p>
+            <p class="title">{{list.nickname}}</p>
             <p class="time">{{list.time}}</p>
           </div>
           <div class="price">
-            <span>{{list.price}}</span>
+            <span>{{list.type}}</span>
           </div>
         </div>
         <div class="imgbox"
-             v-show="list.img.length>0">
+             v-show="JSON.parse(list.photo).length>0">
           <img alt=""
-               v-if="list.img.length== 1"
-               :src="list.img[0]"
+               v-if="JSON.parse(list.photo).length== 1"
+               :src="PERFIX_IMAGE+JSON.parse(list.photo)[0]"
                :class="{releaseimg:false}"/>
           <img alt=""
-               v-else-if="list.img.length>= 2&&Math.round(list.img.length%2)==0"
-               v-for="(value,imgIndex) in list.img"
+               v-else-if="JSON.parse(list.photo).length>= 2&&Math.round(JSON.parse(list.photo).length%2)==0"
+               v-for="(value,imgIndex) in JSON.parse(list.photo)"
                :key="imgIndex"
-               :src="value"
+               :src="PERFIX_IMAGE+value"
                :class="{releaseimgtwo:true}"/>
           <img alt=""
-               v-else-if="list.img.length>= 2&&Math.round(list.img.length%2)!=0"
-               v-for="(value,imgIndex) in list.img"
+               v-else-if="JSON.parse(list.photo).length>= 2&&Math.round(JSON.parse(list.photo).length%2)!=0"
+               v-for="(value,imgIndex) in JSON.parse(list.photo)"
                :key="imgIndex"
-               :src="value"
+               :src="PERFIX_IMAGE+value"
                :class="{releaseimg:true}"/>
-          <!--:class="{releaseimg : list.img.length >= 2 ? true : false}"/>-->
-          <!--if(list.img.length>= 2&&Math.round(list.img.length%2)==0){-->
         </div>
         <div class="detail border-1px">
-          <p class="desc">{{list.desc}}</p>
+          <p class="desc">{{list.content}}</p>
         </div>
         <div class="footer">
-          <div class="addr">{{list.add}}</div>
-          <div class="kind">{{list.kind}}</div>
-          <div class="star">{{list.star}}</div>
+          <div class="addr">{{list.sex}}</div>
+          <div class="kind">{{list.username}}</div>
+          <div class="star">{{list.id}}</div>
         </div>
 
       </li>
@@ -73,10 +71,14 @@
 <script>
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
+  import {PERFIX_IMAGE} from '../../api/data'
 
   export default {
     data() {
-      return {}
+      return {
+        url: '',
+        PERFIX_IMAGE: PERFIX_IMAGE
+      }
     },
     props: {
       news: {
