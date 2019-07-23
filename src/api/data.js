@@ -564,3 +564,165 @@ export const yutangbanner = [
     "src": "./static/ad2.png"
   }
 ]
+
+export const friendCircel = [
+  {
+    "commit": [
+      {
+        "commit": [],
+        "content": "你家的",
+        "headimg": "",
+        "id": 68,
+        "nickname": "你真逗丶",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-19 18:06:29",
+        "type": "",
+        "username": "asdfg",
+        "zan": []
+      },
+      {
+        "commit": [],
+        "content": "哈哈哈",
+        "headimg": "",
+        "id": 70,
+        "nickname": "你真逗丶",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-19 19:46:53",
+        "type": "",
+        "username": "asdfg",
+        "zan": []
+      }
+    ],
+    "content": "随缘。。。",
+    "headimg": "2017tiaozhan201702171754275427.jpg",
+    "id": 156,
+    "nickname": "锅盖头",
+    "photo": ["2017tiaozhan2017021717545154518074380.jpg"],
+    "replayuser": "",
+    "sex": "女",
+    "time": "2017-02-17 17:54:52",
+    "type": "1",
+    "username": "2017tiaozhan",
+    "zan": [
+      {
+        "commit": [],
+        "content": "",
+        "headimg": "",
+        "id": 96,
+        "nickname": "你真逗丶",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-19 18:06:21",
+        "type": "",
+        "username": "asdfg",
+        "zan": []
+      },
+      {
+        "commit": [],
+        "content": "",
+        "headimg": "",
+        "id": 95,
+        "nickname": "锅盖头",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-17 17:56:47",
+        "type": "",
+        "username": "2017tiaozhan",
+        "zan": []
+      }
+    ]
+  },
+  {
+    "commit": [],
+    "content": "将来和你一起到这里看看风景！",
+    "headimg": "xiaowang201907191230213021.jpg",
+    "id": 155,
+    "nickname": "思君如痴",
+    "photo": ["xiaowang201702070927062763595510.jpg", "xiaowang201702070927062765254771.jpg", "xiaowang201702070927062769747742.jpg", "xiaowang201702070927062760326443.jpg", "xiaowang201702070927062765369204.jpg", "xiaowang201702070927062765699945.jpg", "xiaowang201702070927062769471056.jpg", "xiaowang201702070927062768518887.jpg", "xiaowang201702070927062766514308.jpg"],
+    "replayuser": "",
+    "sex": "男",
+    "time": "2017-02-07 09:27:08",
+    "type": "1",
+    "username": "xiaowang",
+    "zan": [
+      {
+        "commit": [],
+        "content": "",
+        "headimg": "",
+        "id": 92,
+        "nickname": "思君如痴",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-07 09:28:45",
+        "type": "",
+        "username": "ysdn",
+        "zan": []
+      }
+    ]
+  },
+  {
+    "commit": [
+      {
+        "commit": [],
+        "content": "会的！",
+        "headimg": "",
+        "id": 66,
+        "nickname": "思君如痴",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-07 09:22:40",
+        "type": "",
+        "username": "xiaowang",
+        "zan": []
+      }
+    ],
+    "content": "好想遇到心目中的他，你在这里吗？",
+    "headimg": "35745804652747820170207003307337.jpg",
+    "id": 154,
+    "nickname": "情定三生",
+    "photo": ["357458046527478201702070053075376851040.jpg", "357458046527478201702070053075370001511.jpg", "357458046527478201702070053075374604622.jpg", "357458046527478201702070053075372139983.jpg", "357458046527478201702070053075373745044.jpg", "357458046527478201702070053075376130915.jpg", "357458046527478201702070053075371255236.jpg", "357458046527478201702070053075372139367.jpg", "357458046527478201702070053075377758048.jpg"],
+    "replayuser": "",
+    "sex": "女",
+    "time": "2017-02-07 00:53:10",
+    "type": "1",
+    "username": "357458046527478",
+    "zan": [
+      {
+        "commit": [],
+        "content": "",
+        "headimg": "",
+        "id": 93,
+        "nickname": "思君如痴",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-07 09:28:51",
+        "type": "",
+        "username": "ysdn",
+        "zan": []
+      },
+      {
+        "commit": [],
+        "content": "",
+        "headimg": "",
+        "id": 90,
+        "nickname": "思君如痴",
+        "photo": "",
+        "replayuser": "",
+        "sex": "",
+        "time": "2017-02-07 09:22:20",
+        "type": "",
+        "username": "xiaowang",
+        "zan": []
+      }
+    ]
+  }
+]
