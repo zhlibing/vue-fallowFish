@@ -33,14 +33,14 @@ export default new Router({
           path: 'new',
           component: New,
           meta: {
-            keepAlive: true
+            keepAlive: false
           }
         },
         {
           path: 'near',
           component: Near,
           meta: {
-            keepAlive: true
+            keepAlive: false
           }
         }
       ]
@@ -57,21 +57,21 @@ export default new Router({
       path: '/yutang',
       component: Yutang,
       meta: {
-        keepAlive: true
+        keepAlive: false
       }
     },
     {
       path: '/message',
       component: Message,
       meta: {
-        keepAlive: true
+        keepAlive: false
       }
     },
     {
       path: '/my',
       component: My,
       meta: {
-        keepAlive: true
+        keepAlive: false
       }
     },
     {
