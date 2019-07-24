@@ -42,6 +42,9 @@
 
       </li>
     </ul>
+    <div class="more">
+      <span class="gomore">更多</span>
+    </div>
     <div class="swiper-container" ref="swiperBottom" style="margin-bottom: 2rem">
       <div class="swiper-wrapper swiper">
         <div class="swiper-slide item" v-for="(item,index) in recoms" :key="index">
@@ -128,7 +131,8 @@
       width 100%
       display flex
       flex-direction column
-      margin-bottom 0.4rem
+      border-1px(#ccc)
+      margin-bottom 0.2rem
       .header
         height 1.02rem
         display flex
@@ -199,6 +203,20 @@
           margin-left 0.3rem
         .star
           color #888888
+    .more
+      width 100%
+      text-align right
+      margin-bottom 0.5rem
+      .gomore
+        font-size 0.45rem
+        font-weight 700
+        background url('../../../static/更多.png') right no-repeat
+        background-size 0.5rem 0.5rem
+        width 3rem
+        height .53rem
+        padding-left 0.6rem
+        padding-right 0.7rem
+        box-sizing border-box
     .swiper
       width 10rem
       margin 0 auto

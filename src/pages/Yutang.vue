@@ -38,6 +38,9 @@
           <div class="toanswer">去回答</div>
         </div>
       </div>
+      <div class="more">
+        <span class="gomore">更多</span>
+      </div>
     </div>
     <div class="interest">
       <div class="titlebox">
@@ -75,7 +78,7 @@
         </div>
       </div>
     </div>
-    <div class="interest bottom2">
+    <div class="interest bottom2 questions">
       <div class="titlebox">
         <p class="title">不可错过的鱼塘</p>
       </div>
@@ -94,7 +97,9 @@
           </div>
         </div>
       </div>
-
+      <div class="more">
+        <span class="gomore">更多</span>
+      </div>
     </div>
     <NavButtom></NavButtom>
   </div>
@@ -341,6 +346,19 @@
       height .53rem
       padding-left 0.6rem
       box-sizing border-box
+    .more
+      width 100%
+      text-align right
+      .gomore
+        font-size 0.45rem
+        font-weight 700
+        background url('../../static/更多.png') right no-repeat
+        background-size 0.5rem 0.5rem
+        width 3rem
+        height .53rem
+        padding-left 0.6rem
+        padding-right 0.7rem
+        box-sizing border-box
     .quesbox
       padding-top 0.4rem
       padding-bottom 0.4rem

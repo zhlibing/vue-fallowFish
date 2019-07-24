@@ -29,17 +29,17 @@
 </template>
 
 <script>
-export default {
-  props: {
-    nears: {
-      type: Array
+  export default {
+    props: {
+      nears: {
+        type: Array
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
-@import '../../common/stylus/mixin.styl'
+  @import '../../common/stylus/mixin.styl'
   .container
     padding 0.2rem
     .list
@@ -47,10 +47,11 @@ export default {
       display flex
       flex-direction column
       margin-bottom 0.4rem
+      border-1px(#ccc)
       .header
         height 1.02rem
         display flex
-        img 
+        img
           height 1rem
           width 1rem
           border-radius 50%
@@ -80,7 +81,7 @@ export default {
           margin-right 0.3rem
       .imgbox
         margin-top 0.1rem
-        img 
+        img
           width 6rem
           height 6rem
       .detail
@@ -88,6 +89,7 @@ export default {
         font-size 0.4rem
         font-weight 700
         padding-bottom 0.3rem
+        line-height 0.6rem
         border-1px(#f3f3f3)
       .footer
         padding .2rem 0
