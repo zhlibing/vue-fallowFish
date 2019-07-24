@@ -11,7 +11,10 @@ import { Toast } from 'mint-ui'
 import VueLazyload from 'vue-lazyload'
 import './common/stylus/index.styl'
 import store from './store'
-
+// import MuseUI from 'muse-ui'
+// import 'muse-ui/dist/muse-ui.css'
+//
+// Vue.use(MuseUI)
 Vue.use(VueLazyload)
 Vue.use(Mint);
 Vue.$toast = Vue.prototype.$toast = Toast;

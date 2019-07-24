@@ -19,6 +19,7 @@ import My from '@/pages/My'
 import Sell from '@/pages/Sell'
 import Login from '@/pages/Login'
 import Regist from '@/pages/Regist'
+// import MovieDetail from '@/components/Details/MovieDetail'
 
 Vue.use(Router)
 
@@ -106,6 +107,10 @@ export default new Router({
       path: '/order',
       component: Order
     },
+    // {
+    //   path: '/moviedetail',
+    //   component: MovieDetail
+    // },
     {
       path: '/sell',
       redirect: '/sell/price',

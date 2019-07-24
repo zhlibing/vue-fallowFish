@@ -42,7 +42,7 @@
 
       </li>
     </ul>
-    <div class="more">
+    <div class="more" @click="todetail">
       <span class="gomore">更多</span>
     </div>
     <div class="swiper-container" ref="swiperBottom" style="margin-bottom: 2rem">
@@ -114,7 +114,12 @@
           path: '/details'
         })
 
-      }
+      },
+      todetail() {
+        this.$router.push({
+          path: '/moviedetail'
+        })
+      },
     }
   }
   // background url('../../../static/cat.png') no-repeat;
