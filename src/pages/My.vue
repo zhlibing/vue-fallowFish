@@ -260,6 +260,7 @@
               width 100%
               height 100%
               border-radius 50%
+              object-fit cover
         .count
           display flex
           align-items center
