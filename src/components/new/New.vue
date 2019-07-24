@@ -17,7 +17,7 @@
           <img alt=""
                v-if="JSON.parse(list.photo).length== 1"
                :src="PERFIX_IMAGE+JSON.parse(list.photo)[0]"
-               :class="{releaseimg:false}"/>
+               :class="{releaseimgone:true}"/>
           <img alt=""
                v-else-if="JSON.parse(list.photo).length>= 2&&Math.round(JSON.parse(list.photo).length%2)==0"
                v-for="(value,imgIndex) in JSON.parse(list.photo)"
@@ -29,7 +29,7 @@
                v-for="(value,imgIndex) in JSON.parse(list.photo)"
                :key="imgIndex"
                :src="PERFIX_IMAGE+value"
-               :class="{releaseimg:true}"/>
+               :class="{releaseimgthree:true}"/>
         </div>
         <div class="detail border-1px">
           <p class="desc">{{list.content}}</p>
@@ -162,17 +162,10 @@
           margin-right 0.3rem
       .imgbox
         margin-top 0.1rem
-        img {
+        .releaseimgone {
           width: 65%;
           float: left;
           height: auto;
-          object-fit: contain;
-        }
-        .releaseimg {
-          width: 30%;
-          margin-right: 0.1066666667rem;
-          margin-bottom: 0.1066666667rem;
-          height: 3rem;
           object-fit: contain;
         }
         .releaseimgtwo {
@@ -180,6 +173,13 @@
           margin-right: 0.1066666667rem;
           margin-bottom: 0.1066666667rem;
           height: 4rem;
+          object-fit: contain;
+        }
+        .releaseimgthree {
+          width: 30%;
+          margin-right: 0.1066666667rem;
+          margin-bottom: 0.1066666667rem;
+          height: 3rem;
           object-fit: contain;
         }
       .detail
