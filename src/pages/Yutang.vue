@@ -368,6 +368,7 @@
           vertical-align middle
           flex 1
           font-weight 500
+          line-height 0.6rem
         img
           width 1.3rem
           height 1.3rem
