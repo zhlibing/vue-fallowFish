@@ -114,6 +114,10 @@
       }
     }
   }
+  // background url('../../../static/cat.png') no-repeat;
+  // background-size: contain;
+  // background-position: center;
+
 </script>
 
 <style lang="stylus" scoped>
@@ -162,18 +166,21 @@
           width: 65%;
           float: left;
           height: auto;
+          object-fit: contain;
         }
         .releaseimg {
           width: 30%;
           margin-right: 0.1066666667rem;
           margin-bottom: 0.1066666667rem;
-          height: auto;
+          height: 3rem;
+          object-fit: contain;
         }
         .releaseimgtwo {
           width: 47%;
           margin-right: 0.1066666667rem;
           margin-bottom: 0.1066666667rem;
-          height: auto;
+          height: 4rem;
+          object-fit: contain;
         }
       .detail
         margin-top 0.2rem
