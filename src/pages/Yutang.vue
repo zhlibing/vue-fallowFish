@@ -122,7 +122,6 @@
     methods: {
       handleScroll() {
         this.scroll = document.documentElement && document.documentElement.scrollTop
-        console.log(this.scroll)
       },
       toast() {
         this.$toast('小哥哥还没做这个功能哦')

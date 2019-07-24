@@ -109,7 +109,6 @@
     methods: {
       handleScroll() {
         this.scroll = document.documentElement && document.documentElement.scrollTop
-        console.log(this.scroll)
       },
       addPic() {
         this.$refs.file.click()

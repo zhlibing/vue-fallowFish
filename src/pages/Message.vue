@@ -88,7 +88,6 @@
     methods: {
       handleScroll() {
         this.scroll = document.documentElement && document.documentElement.scrollTop
-        console.log(this.scroll)
       },
       toast() {
         this.$toast('此功能还在完善')
