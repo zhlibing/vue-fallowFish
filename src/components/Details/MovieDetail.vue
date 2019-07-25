@@ -172,7 +172,6 @@
     methods: {
       handleScroll() {
         this.scroll = document.documentElement && document.documentElement.scrollTop
-        console.log(this.scroll, '>>>>moviedetail.vue')
         if (this.scroll >= 550) {
           this.show_bar = true;
         } else {
@@ -371,7 +370,7 @@
           margin: 0 auto;
           z-index: 101;
           top: 70px;
-          width: 1200px;
+          width: 100%;
           .info_box {
             display: flex;
             flex-wrap: wrap;
@@ -386,9 +385,11 @@
             }
 
             .info_text {
+              margin-top: 1.7rem;
+              background: #4caf50;
               padding-left: 20px;
               .title {
-                padding-top: 5px;
+                padding-top: 25px;
                 display: inline-block;
                 font-size: 20px;
                 line-height: 22px;
@@ -496,7 +497,7 @@
       }
     }
     .page_bd {
-      padding-top: 140px;
+      padding-top: 80px;
       .content {
         max-width: 1200px;
         margin: auto;
