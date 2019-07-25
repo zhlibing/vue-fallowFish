@@ -134,6 +134,32 @@ export function doFindhavealook(params) {
   })
 }
 
+// map.put("username", dao.queryUserByNewTime().getUsername());
+// map.put("pagenumber", String.valueOf(PageNumber));
+export function doFindvisiter(params) {
+  const url = HOST_LOCAL + 'findvisiter.do'
+  return axios.post(url, params, {
+    headers: {
+      Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+      Accept: 'application/json',
+      dataType: 'JSONP',
+    }
+  })
+}
+
+// map.put("username", dao.queryUserByNewTime().getUsername());
+// map.put("touser", toUser);
+export function doUpdatevisiter(params) {
+  const url = HOST_LOCAL + 'updatevisiter.do'
+  return axios.post(url, params, {
+    headers: {
+      Authorization: 'Bearer 5llcq3GiwABUg-Fxs...',
+      Accept: 'application/json',
+      dataType: 'JSONP',
+    }
+  })
+}
+
 //上传图片保存路径
 export function doUpheadimage(params) {
   const url = HOST_LOCAL + 'upheadimage.do'

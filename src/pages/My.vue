@@ -14,6 +14,10 @@
           </div>
         </div>
         <div class="count">
+          <div class="numbox" @click="findvisiter">
+            <span class="num">{{'100'}}</span>
+            <span class="numname">访客数</span>
+          </div>
           <div class="numbox">
             <span class="num">{{starnum}}</span>
             <span class="numname">被赞数</span>
@@ -159,6 +163,15 @@
           })
         }
       },
+      findvisiter() {
+        if (!this.isLogin) {
+          this.$toast('请先登录再查看')
+        } else {
+          this.$router.push({
+            path: '/myvisiter'
+          })
+        }
+      },
       toUpload(file) {
         var myDate = new Date().format("yyyyMMddhhmmss")
         var upname = this.username + myDate + this.GetRandomNum(100000, 999999) + ".jpg"
@@ -203,6 +216,7 @@
       ...mapGetters([
         'login',
         'username',
+        'visitnum',
         'starnum',
         'focusnum',
         'fabunum',

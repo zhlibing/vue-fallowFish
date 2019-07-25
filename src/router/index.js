@@ -6,6 +6,7 @@ import Near from '@/components/near/Near'
 import MoreNear from '@/components/near/MoreNear'
 import New from '@/components/new/New'
 import Details from '@/components/Details/Details'
+import MyVisiter from '@/components/visiter/MyVisiter'
 import Chat from '@/components/Details/Chat'
 import Addr from '@/components/Details/Addr'
 import Pay from '@/components/Details/Pay'
@@ -50,6 +51,10 @@ export default new Router({
     {
       path: '/morenear',
       component: MoreNear
+    },
+    {
+      path: '/myvisiter',
+      component: MyVisiter
     },
     {
       path: '/search',
