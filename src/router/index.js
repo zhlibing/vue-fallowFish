@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Search from '@/pages/Search'
 import Category from '@/pages/Category'
 import Near from '@/components/near/Near'
+import MoreNear from '@/components/near/MoreNear'
 import New from '@/components/new/New'
 import Details from '@/components/Details/Details'
 import Chat from '@/components/Details/Chat'
@@ -45,6 +46,10 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/morenear',
+      component: MoreNear
     },
     {
       path: '/search',

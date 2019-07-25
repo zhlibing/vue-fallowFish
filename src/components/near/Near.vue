@@ -25,6 +25,9 @@
         </div>
       </li>
     </ul>
+    <div class="more" @click="todetail">
+      <span class="gomore">更多</span>
+    </div>
   </div>
 </template>
 
@@ -34,6 +37,13 @@
       nears: {
         type: Array
       }
+    },
+    methods: {
+      todetail() {
+        this.$router.push({
+          path: '/morenear'
+        })
+      },
     }
   }
 </script>
@@ -42,6 +52,7 @@
   @import '../../common/stylus/mixin.styl'
   .container
     padding 0.2rem
+    margin-bottom 1.5rem
     .list
       width 100%
       display flex
@@ -102,4 +113,18 @@
           margin-left 0.3rem
         .star
           color #888888
+    .more
+      width 100%
+      text-align right
+      margin-bottom 0.5rem
+      .gomore
+        font-size 0.45rem
+        font-weight 700
+        background url('../../../static/更多.png') right no-repeat
+        background-size 0.5rem 0.5rem
+        width 3rem
+        height .53rem
+        padding-left 0.6rem
+        padding-right 0.7rem
+        box-sizing border-box
 </style>
