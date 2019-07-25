@@ -19,11 +19,11 @@
         <img :src='url' alt="" class="image">
         <div class="info">
           <div class="head2">
-            <p class="tit">{{'酷酷酷'}}</p>
-            <span class="level">{{'11级'}}</span>
+            <p class="tit">{{item.username}}</p>
+            <span class="level">{{item.level}}</span>
           </div>
           <div class="text">
-            <p>{{'我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？'}}</p>
+            <p>{{item.lives}}</p>
           </div>
           <div class="hot">
             <span>人气{{'100人喜欢'}}·发布{{'80篇'}}</span>
@@ -38,7 +38,7 @@
   import {mapGetters} from 'vuex'
   import LoadMore from 'vue-loadmore-simple'
   import {timeout} from '../../untils/utime'
-  import {doFindhavealook, ERR_OK, PERFIX_IMAGE} from '../../api/data'
+  import {doFindvisiter, ERR_OK, PERFIX_IMAGE} from '../../api/data'
   import Qs from 'qs'
   import Vue from 'vue'
 
@@ -63,37 +63,71 @@
       },
       // 加载刷新数据
       async loadRefresh() {
-        console.log("loadRefresh")
-        const data = await this._fetchList()
-        // 初始化数据
-        this.list = data
         this.page = 1
-        if (data.length > 0) {
-          this.totalCount = 9999
-        } else {
-          this.totalCount = 0
-        }
+        this.totalCount = 9999
         this.loadFinished = false
+        await this._fetchList(this.page, 'refresh')
       },
       // 加载更多数据
       async loadMore() {
         const page = this.page + 1
-        const data = await this._fetchList(page)
-        this.list.push(...data)
-        data.length < this.pageSize ? this.loadFinished = true : this.page++ // 判断是否已达最后一页
+        await this._fetchList(page, 'loadmore')
       },
       // 模拟一个异步获取列表操作
-      async _fetchList(page = 1, pageSize = this.pageSize) {
+      async _fetchList(page, type) {
         try {
           await timeout(1000)
-          if (page < 3) {
-            // 模拟数据返回
-            return Array.from({length: pageSize}, (value, index) => `第${page}页的数据${index}`)
-          } else {
-            // 模拟已到达最后一页时的数据返回
-            return Array.from({length: pageSize / 2}, (value, index) => `最后一页的数据${index}`)
+          const params = {
+            'pagenumber': page,
+            'username': window.localStorage.getItem('username'),
           }
+          doFindvisiter(Qs.stringify(params)).then((res) => {
+            console.log(res, '>>>>res' + page + type)
+            if (res.status === ERR_OK) {
+              if (res.data != null && res.data.length > 0) {
+                if (type == 'refresh') {
+                  this.list = res.data
+                } else if (type == 'loadmore') {
+                  this.list.push(...res.data)
+                  res.data.length < this.pageSize ? this.loadFinished = true : this.page++ // 判断是否已达最后一页
+                }
+              } else {
+                if (this.list != null && this.list.length > 0) {
+                  this.totalCount = 9999
+                  this.loadFinished = true
+                } else {
+                  this.totalCount = 0
+                  this.loadFinished = false
+                }
+              }
+            } else {
+              if (this.list != null && this.list.length > 0) {
+                this.totalCount = 9999
+                this.loadFinished = true
+              } else {
+                this.totalCount = 0
+                this.loadFinished = false
+              }
+            }
+          }).catch((err) => {
+            console.error(err, '>>>>error')
+            if (this.list != null && this.list.length > 0) {
+              this.totalCount = 9999
+              this.loadFinished = true
+            } else {
+              this.totalCount = 0
+              this.loadFinished = false
+            }
+          });
         } catch (e) {
+          console.error(err, '>>>>error')
+          if (this.list != null && this.list.length > 0) {
+            this.totalCount = 9999
+            this.loadFinished = true
+          } else {
+            this.totalCount = 0
+            this.loadFinished = false
+          }
           return false
         }
       },
