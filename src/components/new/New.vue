@@ -117,7 +117,8 @@
       },
       todetail() {
         this.$router.push({
-          path: '/moviedetail'
+          // path: '/moviedetail'
+          path: '/de'
         })
       },
     }

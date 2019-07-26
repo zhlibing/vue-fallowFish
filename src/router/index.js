@@ -9,6 +9,7 @@ import Details from '@/components/Details/Details'
 import MyVisiter from '@/components/visiter/MyVisiter'
 import Chat from '@/components/Details/Chat'
 import Addr from '@/components/Details/Addr'
+import De from '@/components/Details/de'
 import Pay from '@/components/Details/Pay'
 import Fabu from '@/components/Fabu/Fabu'
 import Order from '@/components/Order/Order'
@@ -51,6 +52,10 @@ export default new Router({
     {
       path: '/morenear',
       component: MoreNear
+    },
+    {
+      path: '/de',
+      component: De
     },
     {
       path: '/myvisiter',
