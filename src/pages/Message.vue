@@ -29,7 +29,8 @@
             <span class="level">{{'11级'}}</span>
           </div>
           <div class="text">
-            <p class="desc">{{'我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？我是老外你是？？'}}</p>
+            <p class="desc">
+              {{item.nickname+item.nickname+item.nickname+item.username+item.nickname+item.nickname+item.nickname}}</p>
           </div>
           <div class="hot">
             <span>人气{{'100人喜欢'}}·发布{{'80篇'}}</span>
@@ -224,7 +225,9 @@
         padding-bottom .3rem
         padding-top .3rem
         border-1px(#ccc)
-        display flex
+        width 50%
+        position: relative;
+        display: inline-block;
         .image
           width 1.6rem
           height 1.6rem
